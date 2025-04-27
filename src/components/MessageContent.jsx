@@ -7,7 +7,7 @@ const MessageContent = ({ content, messageType }) => {
   
   // For user messages, just display as plain text
   if (messageType === 'user') {
-    return <p className="text-sm whitespace-pre-wrap">{content}</p>;
+    return <p className="text-sm whitespace-pre-wrap text-left">{content}</p>;
   }
   
   // Parse content for code blocks and formatting
