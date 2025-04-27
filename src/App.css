@@ -1,60 +1,235 @@
 @import "tailwindcss";
+/* App.css - Enhanced chat interface styles */
 
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
-
+/* Base styles */
 body {
-  background: #1e1e1e;
-}
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #111827;
 }
 
-@keyframes logo-spin {
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1f2937;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #374151;
+  border-radius: 5px;
+  border: 2px solid #1f2937;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #4b5563;
+}
+
+/* Scrollbar for Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #374151 #1f2937;
+}
+
+/* Message bubbles animation */
+@keyframes slideIn {
   from {
-    transform: rotate(0deg);
+    opacity: 0;
+    transform: translateY(20px);
   }
   to {
-    transform: rotate(360deg);
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+.flex > div {
+  animation: slideIn 0.3s ease-out;
+}
+
+/* Loading dots animation */
+@keyframes bounce {
+  0%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-8px);
   }
 }
 
-.card {
-  padding: 2em;
+.animate-bounce {
+  animation: bounce 1.4s infinite ease-in-out;
 }
 
-.read-the-docs {
-  color: #888;
+/* Enhanced prose styling for markdown content */
+.prose {
+  color: #e5e7eb;
 }
 
-.markdown-content h1 {
-  font-size: 1.5rem;
-  margin: 1rem 0;
+.prose strong {
+  color: #fff;
+  font-weight: 600;
 }
-.markdown-content pre {
-  background: #1a1a1a;
-  padding: 1rem;
-  border-radius: 0.5rem;
+
+.prose em {
+  color: #e5e7eb;
 }
-.markdown-content code {
-  font-family: "Courier New", Courier, monospace;
+
+.prose code {
+  color: #a5b4fc;
+  background-color: #374151;
+  padding: 0.2em 0.4em;
+  border-radius: 0.25rem;
+  font-size: 0.875em;
+}
+
+.prose pre {
+  background-color: #1f2937;
+  border: 1px solid #374151;
+  margin: 1em 0;
+}
+
+.prose pre code {
+  background-color: transparent;
+  padding: 0;
+  color: inherit;
+}
+
+.prose a {
+  color: #818cf8;
+  text-decoration: none;
+}
+
+.prose a:hover {
+  text-decoration: underline;
+}
+
+.prose blockquote {
+  border-left-color: #4f46e5;
+  color: #9ca3af;
+}
+
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4,
+.prose h5,
+.prose h6 {
+  color: #fff;
+  font-weight: 600;
+}
+
+.prose ul,
+.prose ol {
+  color: #e5e7eb;
+}
+
+.prose table {
+  border-color: #374151;
+}
+
+.prose thead {
+  border-bottom-color: #374151;
+}
+
+.prose tbody tr {
+  border-bottom-color: #374151;
+}
+
+.prose th {
+  color: #fff;
+}
+
+.prose td {
+  color: #e5e7eb;
+}
+
+/* Auto-resize textarea */
+textarea {
+  transition: height 0.1s ease;
+}
+
+/* Focus styles */
+:focus-visible {
+  outline: 2px solid #818cf8;
+  outline-offset: 2px;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 640px) {
+  .max-w-4xl {
+    max-width: 100%;
+  }
+
+  .px-4 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .prose pre {
+    font-size: 0.75rem;
+  }
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .bg-gray-800 {
+    background-color: #000;
+  }
+
+  .bg-gray-700 {
+    background-color: #111;
+  }
+
+  .text-gray-400 {
+    color: #fff;
+  }
+}
+
+/* Custom syntax highlighting adjustments */
+.hljs {
+  background: transparent !important;
+}
+
+/* Enhanced button styles */
+button {
+  transition: all 0.2s ease;
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+/* Chat bubble styles */
+.rounded-br-sm {
+  border-bottom-right-radius: 0.125rem;
+}
+
+.rounded-bl-sm {
+  border-bottom-left-radius: 0.125rem;
+}
+
+/* Gradient text */
+.bg-gradient-text {
+  background: linear-gradient(to right, #818cf8, #6366f1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
